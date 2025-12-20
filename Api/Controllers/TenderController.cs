@@ -1,4 +1,5 @@
 ﻿using Application.DTO;
+using Application.Service.TenderService;
 using Microsoft.AspNetCore.Mvc;
 
 namespace TendersManagementSystem.Controllers
@@ -7,8 +8,8 @@ namespace TendersManagementSystem.Controllers
     [Route("api/[controller]")]
     public class TenderController : ControllerBase
     {
-        private Application.TenderService.ITenderService _tenderService;
-        public TenderController(Application.TenderService.ITenderService tenderService)
+        private ITenderService _tenderService;
+        public TenderController(ITenderService tenderService)
         {
             _tenderService = tenderService;
         }

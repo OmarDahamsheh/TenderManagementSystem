@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Application.TenderRepo;
+using Application.Repository.BidRepo;
+using Application.Repository.TenderRepo;
 using Infrastructure;
 
 namespace Application.UnitOfWork
@@ -12,11 +13,12 @@ namespace Application.UnitOfWork
     {
         private Context _context;
         public ITenderRepository TendersRepo { get; }
-
-        public UnitOfWork(Context context,ITenderRepository tenderRepo)
+        public IBidRepository BidsRepo { get; }
+        public UnitOfWork(Context context, ITenderRepository tenderRepo, IBidRepository bidsRepo)
         {
             _context = context;
             TendersRepo = tenderRepo;
+            BidsRepo = bidsRepo;
         }
 
         public async Task Commit()

@@ -4,6 +4,7 @@ using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20251220185923_AddedFinancialProposal")]
+    partial class AddedFinancialProposal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -123,36 +126,6 @@ namespace Infrastructure.Migrations
                     b.HasIndex("BidId");
 
                     b.ToTable("FinancialProposals");
-                });
-
-            modelBuilder.Entity("Domain.Models.TechnicalProposal", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BidId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Methodology")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProposedSolution")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TechnicalApproach")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BidId");
-
-                    b.ToTable("TechnicalProposals");
                 });
 
             modelBuilder.Entity("Domain.Models.Tender", b =>
@@ -315,17 +288,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("Bid");
                 });
 
-            modelBuilder.Entity("Domain.Models.TechnicalProposal", b =>
-                {
-                    b.HasOne("Domain.Models.Bid", "Bid")
-                        .WithMany("TechnicalProposal")
-                        .HasForeignKey("BidId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Bid");
-                });
-
             modelBuilder.Entity("Domain.Models.Tender", b =>
                 {
                     b.HasOne("Domain.Models.User", "AwardedToUser")
@@ -359,8 +321,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("BidDocuments");
 
                     b.Navigation("FinancialProposal");
-
-                    b.Navigation("TechnicalProposal");
                 });
 
             modelBuilder.Entity("Domain.Models.Tender", b =>

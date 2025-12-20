@@ -7,7 +7,7 @@ using Application.DTO;
 using Application.UnitOfWork;
 using Domain.Models;
 
-namespace Application.TenderService
+namespace Application.Service.TenderService
 {
     public class TenderService : ITenderService
     {
@@ -17,7 +17,7 @@ namespace Application.TenderService
             _uow = uow;
         }
 
-        
+
         public async Task<int> CreateTender(TenderDetailsDto dto, int CurrentUserId)
         {
             var tender = new Tender
@@ -38,19 +38,21 @@ namespace Application.TenderService
             return tender.Id;
         }
 
-        public async Task AddEligibilityCriteria(EligibilityCriteriaDTO dto) {
+        public async Task AddEligibilityCriteria(EligibilityCriteriaDTO dto)
+        {
             var criteria = new EligibilityCriteria
             {
                 Criteria = dto.Criteria,
                 TenderId = dto.TenderId
             };
 
-           await _uow.TendersRepo.AddEligibilityCriteria(criteria);
-           await _uow.Commit();
+            await _uow.TendersRepo.AddEligibilityCriteria(criteria);
+            await _uow.Commit();
 
         }
 
-        public async Task AddTenderDocument(TenderDocumentDTO dto) {
+        public async Task AddTenderDocument(TenderDocumentDTO dto)
+        {
             var document = new TenderDocument
             {
                 DocumentName = dto.DocumentName,
@@ -61,12 +63,14 @@ namespace Application.TenderService
             await _uow.Commit();
         }
 
-        public async Task DeleteTender(int tenderId) {
+        public async Task DeleteTender(int tenderId)
+        {
             await _uow.TendersRepo.DeleteTender(tenderId);
             await _uow.Commit();
         }
 
-        public async Task DeleteEligibilityCriteria(int criteriaId) { 
+        public async Task DeleteEligibilityCriteria(int criteriaId)
+        {
             await _uow.TendersRepo.DeleteEligibilityCriteria(criteriaId);
             await _uow.Commit();
         }
@@ -78,8 +82,8 @@ namespace Application.TenderService
 
         public async Task UpdateTender(TenderDetailsDto dto, int tenderId)
         {
-            var tender=await _uow.TendersRepo.FindTenderById(tenderId);
-            
+            var tender = await _uow.TendersRepo.FindTenderById(tenderId);
+
             tender.Title = dto.Title;
             tender.Description = dto.Description;
             tender.Budget = dto.Budget;
@@ -93,18 +97,18 @@ namespace Application.TenderService
         }
         public async Task UpdateCriteria(EligibilityCriteriaDTO dto, int criteriaId)
         {
-            var criteria=await _uow.TendersRepo.FindCriteriaById(criteriaId);
+            var criteria = await _uow.TendersRepo.FindCriteriaById(criteriaId);
 
             criteria.Criteria = dto.Criteria;
 
             await _uow.Commit();
         }
-        
+
         public async Task UpdateDocument(TenderDocumentDTO dto, int documentId)
         {
-            var document=await _uow.TendersRepo.FindDocumentById(documentId);
+            var document = await _uow.TendersRepo.FindDocumentById(documentId);
 
-            document.DocumentName = dto.DocumentName;   
+            document.DocumentName = dto.DocumentName;
 
             await _uow.Commit();
         }

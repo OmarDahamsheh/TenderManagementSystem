@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Application.DTO;
 
 
-namespace Application.TenderService
+namespace Application.Service.TenderService
 {
     public interface ITenderService
     {

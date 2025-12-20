@@ -1,5 +1,7 @@
-using Application.TenderRepo;
-using Application.TenderService;
+using Application.Repository.BidRepo;
+using Application.Repository.TenderRepo;
+using Application.Service.BidService;
+using Application.Service.TenderService;
 using Application.UnitOfWork;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
@@ -19,9 +21,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<ITenderService, TenderService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+builder.Services.AddScoped<ITenderService, TenderService>();
+builder.Services.AddScoped<IBidService, BidService>();
+
 builder.Services.AddScoped<ITenderRepository, TenderRepository>();
+builder.Services.AddScoped<IBidRepository, BidRepository>();
 
 var app = builder.Build();
 

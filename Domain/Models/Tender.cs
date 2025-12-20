@@ -26,6 +26,7 @@ namespace Domain.Models
         [Required]
         public ICollection<EligibilityCriteria> EligibilityCriteria { get; set; }= new List<EligibilityCriteria>();
         public ICollection<TenderDocument> TenderDocument { get; set; }= new List<TenderDocument>();
+        public ICollection<Bid>Bids { get; set; } = new List<Bid>();
 
         [Required]
         public DateTime StartDate { get; set; }

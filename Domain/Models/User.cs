@@ -26,7 +26,7 @@ namespace Domain.Models
         public UserRole Role { get; set; }
 
         public List<Tender> CreatedTenders { get; set; } =new List<Tender>();
-
+        public ICollection<Bid>Bids { get; set; }=new List<Bid>();
         private User() { }
         public User(string Name, string Email, string PhoneNumber, UserRole Role) { 
             this.Name = Name;

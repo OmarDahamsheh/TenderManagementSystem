@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Domain.Models;
 using Infrastructure;
 
-namespace Application.TenderRepo
+namespace Application.Repository.TenderRepo
 {
     public class TenderRepository : ITenderRepository
     {
@@ -58,7 +58,8 @@ namespace Application.TenderRepo
             //}
         }
 
-        public async Task DeleteEligibilityCriteria(int criteriaId) {
+        public async Task DeleteEligibilityCriteria(int criteriaId)
+        {
             var criteria = await _context.EligibilityCriterias.FindAsync(criteriaId);
             if (criteria != null)
             {
@@ -66,7 +67,7 @@ namespace Application.TenderRepo
             }
             else throw new Exception("Criteria not found");
         }
-        
+
         public async Task DeleteTenderDocument(int documentId)
         {
             var document = await _context.TenderDocuments.FindAsync(documentId);
@@ -78,32 +79,35 @@ namespace Application.TenderRepo
         }
 
 
-        public async Task<Tender> FindTenderById(int tenderId) {
+        public async Task<Tender> FindTenderById(int tenderId)
+        {
             var tender = await _context.Tenders.FindAsync(tenderId);
-           
+
             if (tender == null)
-                 throw new Exception("Tender not found");
+                throw new Exception("Tender not found");
 
             return tender;
         }
-        public async Task<EligibilityCriteria> FindCriteriaById(int criteriaId) {
+        public async Task<EligibilityCriteria> FindCriteriaById(int criteriaId)
+        {
             var criteria = await _context.EligibilityCriterias.FindAsync(criteriaId);
-           
+
             if (criteria == null)
-                 throw new Exception("Criteria not found");
+                throw new Exception("Criteria not found");
 
             return criteria;
         }
-        public async Task<TenderDocument> FindDocumentById(int documentId) {
+        public async Task<TenderDocument> FindDocumentById(int documentId)
+        {
 
             var document = await _context.TenderDocuments.FindAsync(documentId);
-           
+
             if (document == null)
-                 throw new Exception("Document not found");
+                throw new Exception("Document not found");
 
             return document;
         }
 
-       
+
     }
 }

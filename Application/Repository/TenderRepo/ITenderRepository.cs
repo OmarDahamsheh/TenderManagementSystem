@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Domain.Models;
 
-namespace Application.TenderRepo
+namespace Application.Repository.TenderRepo
 {
     public interface ITenderRepository
     {
@@ -16,9 +16,9 @@ namespace Application.TenderRepo
 
         public Task AddTenderDocument(TenderDocument document);
         public Task DeleteTenderDocument(int documentId);
-        public Task<Tender>FindTenderById(int tenderId);
-        public Task<EligibilityCriteria>FindCriteriaById(int criteriaId);
-        public Task<TenderDocument>FindDocumentById(int documentId);
+        public Task<Tender> FindTenderById(int tenderId);
+        public Task<EligibilityCriteria> FindCriteriaById(int criteriaId);
+        public Task<TenderDocument> FindDocumentById(int documentId);
 
     }
 }
