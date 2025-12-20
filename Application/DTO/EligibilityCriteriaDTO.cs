@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Application.DTO
 {
-    public class EligibilityCerteriaDTO
+    public class EligibilityCriteriaDTO
     {
-        public string Creteria { set; get; }
+        public string Criteria { set; get; }
 
         public int TenderId { set; get; }
     }

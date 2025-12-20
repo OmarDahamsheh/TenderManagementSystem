@@ -7,21 +7,20 @@ using System.Threading.Tasks;
 
 namespace Domain.Models
 {
-    public class EligibilityCerteria
+    public class EligibilityCriteria
     {
         public int Id { get; set; }
-        
-        [Required]
+
         public string Criteria { get; set; }
 
         public int TenderId { get; set; }
         public Tender Tender { get; set; }
 
-        public EligibilityCerteria() { }
-        public EligibilityCerteria(string criteria, int tenderId)
+        public EligibilityCriteria() { }
+        public EligibilityCriteria(string criteria)
         {
             Criteria = criteria;
-            TenderId = tenderId;
+            //TenderId = tenderId;
         }
     }
 }

@@ -13,15 +13,15 @@ namespace Application.UnitOfWork
         private Context _context;
         public ITenderRepository TendersRepo { get; }
 
-        public UnitOfWork(Context context)
+        public UnitOfWork(Context context,ITenderRepository tenderRepo)
         {
             _context = context;
-            TendersRepo = new TenderRepository(_context);
+            TendersRepo = tenderRepo;
         }
 
-        public void Commit()
+        public async Task Commit()
         {
-           _context.SaveChanges();
+           await _context.SaveChangesAsync();
         }
     }
 }

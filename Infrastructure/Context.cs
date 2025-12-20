@@ -9,6 +9,9 @@ namespace Infrastructure
 
         public DbSet<User> Users { get; set; } = null!;
         public DbSet<Tender> Tenders { get; set; } = null!;
+        public DbSet<EligibilityCriteria> EligibilityCriterias { get; set; } = null!;
+        public DbSet<TenderDocument> TenderDocuments { get; set; } = null!;
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -27,7 +30,13 @@ namespace Infrastructure
                 .WithOne(e=>e.Tender)
                 .HasForeignKey(e => e.TenderId);
 
-            
+            modelBuilder.Entity<Tender>()
+                .HasMany(t=>t.TenderDocument)
+                .WithOne(d=>d.Tender)
+                .HasForeignKey(d => d.TenderId);
+
+
+
         }
     }
 

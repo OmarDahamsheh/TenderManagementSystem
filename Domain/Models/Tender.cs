@@ -24,7 +24,8 @@ namespace Domain.Models
         public decimal Budget { get; set; }
 
         [Required]
-        public ICollection<EligibilityCerteria> EligibilityCriteria { get; set; }= new List<EligibilityCerteria>();
+        public ICollection<EligibilityCriteria> EligibilityCriteria { get; set; }= new List<EligibilityCriteria>();
+        public ICollection<TenderDocument> TenderDocument { get; set; }= new List<TenderDocument>();
 
         [Required]
         public DateTime StartDate { get; set; }
@@ -39,8 +40,13 @@ namespace Domain.Models
         public int? AwardedToUserId { get; set; }
         public User? AwardedToUser { get; set; }
 
+        public string Industry { get; set; }
+        public string TenderType { get; set; }
+        public string Location { get; set; }
+
+
         public Tender() { }
-        public Tender(string Title, string Description, decimal Budget, List<EligibilityCerteria> EligibilityCriteria, DateTime StartDate, DateTime ClosingDate, int CreatedByUserId)
+        public Tender(string Title, string Description, decimal Budget, List<EligibilityCriteria> EligibilityCriteria, DateTime StartDate, DateTime ClosingDate, int CreatedByUserId, string industry, string tenderType, string location)
         {
             this.Title = Title;
             this.Description = Description;
@@ -48,7 +54,10 @@ namespace Domain.Models
             this.EligibilityCriteria = EligibilityCriteria;
             this.StartDate = StartDate;
             this.ClosingDate = ClosingDate;
-            this.CreatedByUserId = CreatedByUserId;
+            this.CreatedByUserId = CreatedByUserId; 
+            Industry = industry;
+            TenderType = tenderType;
+            Location = location;
         }
 
     }

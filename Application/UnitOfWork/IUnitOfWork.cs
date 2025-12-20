@@ -10,6 +10,6 @@ namespace Application.UnitOfWork
     public interface IUnitOfWork
     {
         ITenderRepository TendersRepo { get; }
-        void Commit();
+        Task Commit();
     }
 }
