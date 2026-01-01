@@ -1,6 +1,8 @@
 using Application.Repository.BidRepo;
+using Application.Repository.EvaluationRepo;
 using Application.Repository.TenderRepo;
 using Application.Service.BidService;
+using Application.Service.EvaluationService;
 using Application.Service.TenderService;
 using Application.UnitOfWork;
 using Infrastructure;
@@ -25,9 +27,12 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddScoped<ITenderService, TenderService>();
 builder.Services.AddScoped<IBidService, BidService>();
+builder.Services.AddScoped<IEvaluationService, EvaluationService>();
 
 builder.Services.AddScoped<ITenderRepository, TenderRepository>();
 builder.Services.AddScoped<IBidRepository, BidRepository>();
+builder.Services.AddScoped<IEvaluationRepository, EvaluationRepository>();
+
 
 var app = builder.Build();
 

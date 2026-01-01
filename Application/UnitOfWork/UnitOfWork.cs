@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Application.Repository.BidRepo;
+using Application.Repository.EvaluationRepo;
 using Application.Repository.TenderRepo;
 using Infrastructure;
 
@@ -14,11 +15,15 @@ namespace Application.UnitOfWork
         private Context _context;
         public ITenderRepository TendersRepo { get; }
         public IBidRepository BidsRepo { get; }
-        public UnitOfWork(Context context, ITenderRepository tenderRepo, IBidRepository bidsRepo)
+
+        public IEvaluationRepository EvaluationRepo { get; }
+
+        public UnitOfWork(Context context, ITenderRepository tenderRepo, IBidRepository bidsRepo, IEvaluationRepository evaluationRepository)
         {
             _context = context;
             TendersRepo = tenderRepo;
             BidsRepo = bidsRepo;
+            EvaluationRepo = evaluationRepository;
         }
 
         public async Task Commit()

@@ -10,7 +10,7 @@ namespace Domain.Models
 {
     public class Bid
     {
-        public int Id { get; set; }
+        public int BidId { get; set; }
         public string Name { get; set; }
         public int? UserId { get; set; }
         public User? User { get; set; }
@@ -21,8 +21,10 @@ namespace Domain.Models
         public ICollection<FinancialProposal>FinancialProposal { get; set; } = new List<FinancialProposal>();
         public ICollection<TechnicalProposal>TechnicalProposal { get; set; } = new List<TechnicalProposal>();
         
-        [NotMapped]
-        public decimal TotalBidAmount => FinancialProposal.Sum(i => i.Quantity * i.UnitPrice);
+        public PaymentMethod PaymentMethods { get; set; }
+
+        //[NotMapped]
+        //public decimal TotalBidAmount => FinancialProposal.Sum(i => i.Quantity * i.UnitPrice);
 
         public Bid() { }
         public Bid(string name)
