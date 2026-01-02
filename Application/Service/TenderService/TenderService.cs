@@ -18,7 +18,7 @@ namespace Application.Service.TenderService
         }
 
 
-        public async Task<int> CreateTender(TenderDetailsDto dto, int CurrentUserId)
+        public async Task<int> CreateTender(CreateTenderDTO dto, int CurrentUserId)
         {
             var tender = new Tender
             {
@@ -80,7 +80,7 @@ namespace Application.Service.TenderService
             await _uow.Commit();
         }
 
-        public async Task UpdateTender(TenderDetailsDto dto, int tenderId)
+        public async Task UpdateTender(CreateTenderDTO dto, int tenderId)
         {
             var tender = await _uow.TendersRepo.FindTenderById(tenderId);
 

@@ -12,7 +12,7 @@ namespace Application.Service.BidService
     public interface IBidService
     {
         public Task AddBid(BidDTO dto);
-        public Task<List<Tender>> GetOpenTenders();
+        public Task<List<TenderListItemDTO>> GetOpenTenders();
         public Task AddFinancialProposal(FinancialProposalDTO dto);
         public Task AddTechnicalProposal(TechnicalProposalDTO dto);
     }

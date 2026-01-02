@@ -14,27 +14,27 @@ namespace Domain.Models
         [Key]
         public int Id { get; set; }
 
-        [Required, MaxLength(50)]
+        
         public string Title { get; set; }
         
-        [Required, MaxLength(250)]
+        
         public string Description { get; set; }
 
         [Required,Column(TypeName="decimal(18,4)")]
         public decimal Budget { get; set; }
 
-        [Required]
+        
         public ICollection<EligibilityCriteria> EligibilityCriteria { get; set; }= new List<EligibilityCriteria>();
         public ICollection<TenderDocument> TenderDocument { get; set; }= new List<TenderDocument>();
         public ICollection<Bid>Bids { get; set; } = new List<Bid>();
 
-        [Required]
+        
         public DateTime StartDate { get; set; }
 
-        [Required]
+        
         public DateTime ClosingDate { get; set; }
 
-        [Required]
+        
         public int CreatedByUserId { get; set; }
         public User CreatedByUser { get; set; }
 

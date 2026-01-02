@@ -20,7 +20,7 @@ namespace TendersManagementSystem.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult<int>> AddTender([FromBody] TenderDetailsDto dto) {
+        public async Task<ActionResult<int>> AddTender([FromBody] CreateTenderDTO dto) {
             //int userId= int.Parse(User.FindFirst("UserId")!.Value); //Get back for it, it need JWT
             int userId = 1;
             var tenderId= await _tenderService.CreateTender(dto,userId);
@@ -66,7 +66,7 @@ namespace TendersManagementSystem.Controllers
 
 
         [HttpPut("{tenderId:int}/update")]
-        public async Task<ActionResult> UpdateTender(int tenderId, [FromBody]TenderDetailsDto dto) { 
+        public async Task<ActionResult> UpdateTender(int tenderId, [FromBody]CreateTenderDTO dto) { 
            await  _tenderService.UpdateTender(dto, tenderId);
             return Ok();
         }

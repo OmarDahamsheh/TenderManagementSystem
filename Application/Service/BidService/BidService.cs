@@ -18,6 +18,7 @@ namespace Application.Service.BidService
             _uow = unitOfWork;
         }
 
+
         public async Task AddBid(BidDTO dto)
         {
 
@@ -32,10 +33,22 @@ namespace Application.Service.BidService
            await _uow.Commit();
         }
 
-        public async Task<List<Tender>> GetOpenTenders()
+        public async Task<List<TenderListItemDTO>> GetOpenTenders()
         {
-            return await _uow.BidsRepo.GetOpenTenders();
-            
+            var tenders = await _uow.BidsRepo.GetOpenTenders();
+
+            return tenders.Select(t => new TenderListItemDTO
+            {
+                Id = t.Id,
+                Title = t.Title,
+                Industry = t.Industry,
+                TenderType = t.TenderType,
+                Location = t.Location,
+                StartDate = t.StartDate,
+                EndDate = t.ClosingDate,
+                Budget = t.Budget
+            }).ToList();
+
         }
 
         public async Task AddFinancialProposal(FinancialProposalDTO dto)

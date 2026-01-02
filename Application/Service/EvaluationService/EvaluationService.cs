@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Application.DTO;
 using Application.UnitOfWork;
 using Domain.Models;
 
@@ -16,9 +17,19 @@ namespace Application.Service.EvaluationService
             _uow = uow;
         }
 
-        public async Task<List<Bid>> GetBidsSortedByPrice()
+        public async Task<List<BidEvaluationDTO>> GetBidsSortedByPrice()
         {
-            return await _uow.EvaluationRepo.GetBidsSortedByPrice();
+            var bids = await _uow.EvaluationRepo.GetBidsSortedByPrice();
+
+            return bids.Select(b => new BidEvaluationDTO
+            {
+                BidId = b.BidId,
+                BidName = b.Name,
+                TenderId = b.TenderId,
+                UserId = b.UserId,
+                TotalPrice = b.FinancialProposal.Sum(fp => fp.TotalPrice),
+                PaymentMethod = b.PaymentMethods.ToString()
+            }).ToList();
         }
 
         public async Task AwardedToUserWithHighestBid(int tenderId) {

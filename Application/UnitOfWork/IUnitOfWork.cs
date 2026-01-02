@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Application.Repository.BidRepo;
 using Application.Repository.EvaluationRepo;
 using Application.Repository.TenderRepo;
+using Application.Repository.UserRepo;
 
 namespace Application.UnitOfWork
 {
@@ -14,6 +15,7 @@ namespace Application.UnitOfWork
         ITenderRepository TendersRepo { get; }
         IBidRepository BidsRepo { get; }
         IEvaluationRepository EvaluationRepo { get; }
+        IUserRepository UsersRepo { get; }
         Task Commit();
     }
 }

@@ -23,7 +23,7 @@ namespace TendersManagementSystem.Controllers
         }
 
         [HttpGet("OpenTenders")]
-        public async Task<ActionResult<List<Tender>>> GetOpenTenders()
+        public async Task<ActionResult<List<TenderListItemDTO>>> GetOpenTenders()
         {
             var tenders=await _bidService.GetOpenTenders();
             return Ok(tenders);
