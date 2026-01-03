@@ -24,7 +24,7 @@ namespace Application.Repository.UserRepo
 
         public async Task<User?> GetUserByEmail(string email)
         {
-            return await _context.Users.FindAsync(email); //*****
+            return await _context.Users.FirstOrDefaultAsync(u=>u.Email==email); 
         }
 
         public async Task<User?> GetUserById(int id)

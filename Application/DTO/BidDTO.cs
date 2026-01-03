@@ -10,7 +10,6 @@ namespace Application.DTO
     public class BidDTO
     {
         public string Name { get; set; }
-        public int UserId { get; set; }
         public int TenderId { get; set; }
         public PaymentMethod PaymentMethods { get; set; }
     }

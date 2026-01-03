@@ -19,13 +19,13 @@ namespace Application.Service.BidService
         }
 
 
-        public async Task AddBid(BidDTO dto)
+        public async Task AddBid(BidDTO dto, int currentUserId)
         {
 
             var bid = new Bid
             {
                 Name = dto.Name,
-                UserId = dto.UserId,
+                UserId = currentUserId,
                 TenderId = dto.TenderId
             };
 

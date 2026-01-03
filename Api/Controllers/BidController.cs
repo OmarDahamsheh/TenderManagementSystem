@@ -1,6 +1,7 @@
 ﻿using Application.DTO;
 using Application.Service.BidService;
 using Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace TendersManagementSystem.Controllers
@@ -16,9 +17,17 @@ namespace TendersManagementSystem.Controllers
             _bidService = bidService;
         }
 
+        [Authorize(Roles ="Bidder")]
         [HttpPost]
         public async Task<ActionResult> AddBid([FromBody]BidDTO dto) {
-            await _bidService.AddBid(dto);
+            var userIdClaim = User.FindFirst("UserId")?.Value;
+
+            if (string.IsNullOrWhiteSpace(userIdClaim))
+                return Unauthorized("Missing UserId claim");
+
+            int userId = int.Parse(userIdClaim);
+
+            await _bidService.AddBid(dto, userId);
             return Ok();
         }
 

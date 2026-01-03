@@ -1,5 +1,6 @@
 ﻿using Application.DTO;
 using Application.Service.TenderService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace TendersManagementSystem.Controllers
@@ -18,11 +19,16 @@ namespace TendersManagementSystem.Controllers
         // I should return for created tender the id to use it in other calls after JWT
 
 
-
+        [Authorize(Roles = "ProcurementOfficer")]
         [HttpPost]
         public async Task<ActionResult<int>> AddTender([FromBody] CreateTenderDTO dto) {
-            //int userId= int.Parse(User.FindFirst("UserId")!.Value); //Get back for it, it need JWT
-            int userId = 1;
+           
+            var userIdClaim= User.FindFirst("UserId")?.Value; //This gets the user ID from the JWT claims.
+
+            if (string.IsNullOrWhiteSpace(userIdClaim)) //if the claim is missing, return an unauthorized response.
+                return Unauthorized("Missing UserId claim");
+
+            int userId = int.Parse(userIdClaim);//Parse the user ID claim to an integer.
             var tenderId= await _tenderService.CreateTender(dto,userId);
             return Ok(tenderId);  
         } 

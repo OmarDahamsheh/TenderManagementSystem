@@ -11,7 +11,7 @@ namespace Application.Service.BidService
 {
     public interface IBidService
     {
-        public Task AddBid(BidDTO dto);
+        public Task AddBid(BidDTO dto, int currentUserId);
         public Task<List<TenderListItemDTO>> GetOpenTenders();
         public Task AddFinancialProposal(FinancialProposalDTO dto);
         public Task AddTechnicalProposal(TechnicalProposalDTO dto);
