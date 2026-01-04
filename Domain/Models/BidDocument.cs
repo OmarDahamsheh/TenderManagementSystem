@@ -18,7 +18,6 @@ namespace Domain.Models
         public BidDocument(string documentPath, int bidId)
         {
             DocumentPath = documentPath;
-            //BidId = bidId;
         }
     }
 }

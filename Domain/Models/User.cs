@@ -28,12 +28,12 @@ namespace Domain.Models
         public List<Tender> CreatedTenders { get; set; } =new List<Tender>();
         public ICollection<Bid>Bids { get; set; }=new List<Bid>();
 
-        public byte[]? PasswordHash { get; set; }//This stores the hashed version of the user's password.
-        public byte[]? PasswordSalt { get; set; }//This is used to add an extra layer of security to the password hashing process.
+        public byte[]? PasswordHash { get; set; }
+        public byte[]? PasswordSalt { get; set; }
 
 
-        public byte[]? PasswordResetTokenHash { get; set; }//This stores the hashed version of the password reset token.
-        public DateTime? ResetTokenExpiresAt { get; set; }//This indicates when the password reset token will expire.
+        public byte[]? PasswordResetTokenHash { get; set; }
+        public DateTime? ResetTokenExpiresAt { get; set; }
 
 
         public User(string Name, string Email, string PhoneNumber, UserRole Role) { 

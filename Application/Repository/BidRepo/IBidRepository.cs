@@ -14,6 +14,7 @@ namespace Application.Repository.BidRepo
         public Task<List<Tender>> GetOpenTenders();
         public Task AddFinancialProposal(FinancialProposal proposal);
         public Task AddTechnicalProposal(TechnicalProposal proposal);
+        public Task<List<TenderDocument>> GetTenderDocuments();
 
     }
 }

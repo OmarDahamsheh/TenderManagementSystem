@@ -20,7 +20,7 @@ namespace Domain.Models
         public EligibilityCriteria(string criteria)
         {
             Criteria = criteria;
-            //TenderId = tenderId;
+            
         }
     }
 }

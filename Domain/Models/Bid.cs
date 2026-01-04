@@ -23,16 +23,12 @@ namespace Domain.Models
         
         public PaymentMethod PaymentMethods { get; set; }
 
-        //[NotMapped]
-        //public decimal TotalBidAmount => FinancialProposal.Sum(i => i.Quantity * i.UnitPrice);
-
+        
         public Bid() { }
         public Bid(string name)
         {
             Name = name;
-            //Description = description;
-            //Price = price;
-            //TenderId = tenderId;
+            
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Application.DTO;
 using Application.Repository.BidRepo;
 using Domain.Models;
+using GetDocumentsDTO = Application.DTO.GetDocumentsDTO;
 
 namespace Application.Service.BidService
 {
@@ -15,5 +16,6 @@ namespace Application.Service.BidService
         public Task<List<TenderListItemDTO>> GetOpenTenders();
         public Task AddFinancialProposal(FinancialProposalDTO dto);
         public Task AddTechnicalProposal(TechnicalProposalDTO dto);
+        public Task<List<GetDocumentsDTO>> GetTenderDocuments();
     }
 }

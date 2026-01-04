@@ -6,15 +6,21 @@ using System.Threading.Tasks;
 using Application.DTO;
 using Application.UnitOfWork;
 using Domain.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Application.Service.TenderService
 {
     public class TenderService : ITenderService
     {
         private readonly IUnitOfWork _uow;
-        public TenderService(IUnitOfWork uow)
+        private readonly IConfiguration _config;
+        public TenderService(IUnitOfWork uow, IConfiguration config)
         {
             _uow = uow;
+            _config = config;
+
         }
 
 
@@ -51,16 +57,23 @@ namespace Application.Service.TenderService
 
         }
 
-        public async Task AddTenderDocument(TenderDocumentDTO dto)
-        {
-            var document = new TenderDocument
+
+        public async Task UploadTenderDocument(int tenderId, TenderDocumentListItemDto dto) {
+            
+            using var stream = new MemoryStream();
+            await dto.Document.CopyToAsync(stream);
+
+            var doc = new TenderDocument
             {
-                DocumentName = dto.DocumentName,
-                //DocumentContent = dto.DocumentContent,
-                TenderId = dto.TenderId,
+                Name = dto.Name,
+                Price = dto.Price,
+                Notes = dto.Notes,
+                Document = stream.ToArray(),
+                TenderId = tenderId
             };
-            await _uow.TendersRepo.AddTenderDocument(document);
+            await _uow.TendersRepo.AddTenderDocument(doc);
             await _uow.Commit();
+
         }
 
         public async Task DeleteTender(int tenderId)
@@ -104,13 +117,5 @@ namespace Application.Service.TenderService
             await _uow.Commit();
         }
 
-        public async Task UpdateDocument(TenderDocumentDTO dto, int documentId)
-        {
-            var document = await _uow.TendersRepo.FindDocumentById(documentId);
-
-            document.DocumentName = dto.DocumentName;
-
-            await _uow.Commit();
-        }
     }
 }

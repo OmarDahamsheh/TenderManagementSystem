@@ -37,5 +37,10 @@ namespace Application.Repository.BidRepo
         {
             _context.TechnicalProposals.Add(proposal);
         }
+
+        public async Task<List<TenderDocument>> GetTenderDocuments() {
+            var res = await _context.TenderDocuments.ToListAsync();
+            return res;
+        }
     }
 }

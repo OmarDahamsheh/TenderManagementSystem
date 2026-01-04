@@ -80,5 +80,19 @@ namespace Application.Service.BidService
             await _uow.BidsRepo.AddTechnicalProposal(tproposal);
             await _uow.Commit();
         }
+
+        public async Task<List<GetDocumentsDTO>> GetTenderDocuments() { 
+
+            var docs= await _uow.BidsRepo.GetTenderDocuments();
+
+            return docs.Select(d => new GetDocumentsDTO
+            {
+                Name = d.Name,
+                Price = d.Price,
+                Notes = d.Notes,
+            }).ToList();
+
+
+        }
     }
 }

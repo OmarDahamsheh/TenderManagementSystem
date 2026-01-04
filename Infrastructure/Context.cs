@@ -22,7 +22,17 @@ namespace Infrastructure
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<User>()
-                .HasIndex(u=>u.Email).IsUnique();
+                 .HasIndex(u=>u.Email).IsUnique();
+
+            modelBuilder.Entity<TenderDocument>()
+                 .HasIndex(d => d.TenderId);
+
+            modelBuilder.Entity<TenderDocument>()
+                 .HasIndex(d => d.TenderId);
+
+            modelBuilder.Entity<EligibilityCriteria>()
+                 .HasIndex(e => e.TenderId);
+
 
             modelBuilder.Entity<Tender>()
                 .HasOne(t => t.CreatedByUser)

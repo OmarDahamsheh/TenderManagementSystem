@@ -31,6 +31,7 @@ namespace TendersManagementSystem.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = "Bidder")]
         [HttpGet("OpenTenders")]
         public async Task<ActionResult<List<TenderListItemDTO>>> GetOpenTenders()
         {
@@ -38,6 +39,7 @@ namespace TendersManagementSystem.Controllers
             return Ok(tenders);
         }
 
+        [Authorize(Roles = "Bidder")]
         [HttpPost("FinancialProposal")]
         public async Task<ActionResult> AddFinancialProposal([FromBody] FinancialProposalDTO dto)
         {
@@ -45,11 +47,20 @@ namespace TendersManagementSystem.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = "Bidder")]
         [HttpPost("TechnicalProposal")]
         public async Task<ActionResult> AddTechnicalProposal([FromBody] TechnicalProposalDTO dto)
         {
             await _bidService.AddTechnicalProposal(dto);
             return Ok();
+        }
+
+        [Authorize(Roles ="Bidder")]
+        [HttpGet("tenders-docs")]
+        public async Task<ActionResult<List<GetDocumentsDTO>>> GetTenderDocuments() {
+            
+            var docs = await _bidService.GetTenderDocuments();
+            return Ok(docs);
         }
     }
 }

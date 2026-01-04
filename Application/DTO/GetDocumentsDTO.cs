@@ -5,19 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
-namespace Domain.Models
+namespace Application.DTO
 {
-    public class TenderDocument
+    public class GetDocumentsDTO
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }
         public string Notes { get; set; }
-        public byte[]? Document { get; set; }
-        public int TenderId { get; set; }
-        public Tender Tender { get; set; }
-
-        public TenderDocument() { }
-       
     }
 }

@@ -17,7 +17,6 @@ namespace Domain.Models
         [Column(TypeName = "decimal(18,4)")]
         public decimal UnitPrice { get; set; }
 
-        //[NotMapped]
         [Column(TypeName = "decimal(18,4)")]
         public decimal TotalPrice { get; set; }
 
